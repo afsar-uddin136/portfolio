@@ -8,14 +8,14 @@ A professional, dark-themed portfolio website built with pure HTML, CSS, and Jav
 
 ```
 PORTFOLIO/
-├── index.html              ← Main HTML file (entry point)
+├── index.html             
 ├── assets/
 │   ├── css/
-│   │   └── style.css       ← All styles, variables, animations
+│   │   └── style.css       
 │   ├── js/
-│   │   └── main.js         ← All interactivity & animations
-│   └── images/             ← Add your profile photo or project screenshots here
-└── README.md               ← This file
+│   │   └── main.js         
+│   └── images/             
+└── README.md               
 ```
 
 ---
@@ -34,21 +34,6 @@ npx serve .
 ```
 Then visit `http://localhost:8000`
 
----
-
-## ✏️ How to Customize
-
-| What to change | Where to change |
-|---|---|
-| Your name, bio, summary | `index.html` → Hero & About sections |
-| Contact details | `index.html` → Contact section |
-| Project info & GitHub links | `index.html` → Projects section |
-| Colors / fonts | `assets/css/style.css` → `:root` variables |
-| Typed text roles | `assets/js/main.js` → `texts` array |
-| Add new projects | Copy a `.project-card` block in `index.html` |
-| Add a profile photo | Place image in `assets/images/`, add `<img>` tag in About section |
-
----
 
 ## 🎨 Tech Used
 
