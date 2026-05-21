@@ -161,9 +161,10 @@ document.querySelectorAll('.stat__num[data-target]').forEach(el => counterObserv
 const contactForm = document.getElementById('contactForm');
 const formNote    = document.getElementById('formNote');
 
-contactForm.addEventListener('submit', (e) => {
+contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
+  const btn = contactForm.querySelector('button[type="submit"]');
   const name    = document.getElementById('name').value.trim();
   const email   = document.getElementById('email').value.trim();
   const message = document.getElementById('message').value.trim();
@@ -174,18 +175,36 @@ contactForm.addEventListener('submit', (e) => {
     return;
   }
 
-  // Construct mailto link
-  const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-  const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-  window.location.href = `mailto:afsar725412@gmail.com?subject=${subject}&body=${body}`;
+  // Loading state
+  btn.disabled = true;
+  btn.innerHTML = 'Sending... <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
 
-  formNote.textContent = '✓ Opening your mail client...';
-  formNote.style.color = 'var(--accent)';
+  try {
+    const res = await fetch(contactForm.action, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name, email, message })
+    });
 
-  setTimeout(() => {
-    contactForm.reset();
-    formNote.textContent = '';
-  }, 3000);
+    if (res.ok) {
+      formNote.textContent = '✓ Message sent! I\'ll get back to you soon.';
+      formNote.style.color = 'var(--accent)';
+      contactForm.reset();
+      btn.innerHTML = '✓ Sent!';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = 'Send Message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>';
+        formNote.textContent = '';
+      }, 4000);
+    } else {
+      throw new Error('Failed');
+    }
+  } catch {
+    formNote.textContent = '✗ Something went wrong. Try emailing directly.';
+    formNote.style.color = '#ff6b6b';
+    btn.disabled = false;
+    btn.innerHTML = 'Send Message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>';
+  }
 });
 
 /* ---- Skill Bar Animation ---- */
