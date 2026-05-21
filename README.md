@@ -1,4 +1,4 @@
-# Md. Afsar Uddin — Portfolio Website
+# My Portfolio Website
 
 A professional, dark-themed portfolio website built with pure HTML, CSS, and JavaScript.
 
@@ -20,20 +20,6 @@ PORTFOLIO/
 
 ---
 
-## 🚀 How to Run
-
-Simply open `index.html` in any modern browser. No build step required.
-
-For best results, serve locally:
-```bash
-# Using Python
-python -m http.server 8000
-
-# Using Node.js (npx)
-npx serve .
-```
-Then visit `http://localhost:8000`
-
 
 ## 🎨 Tech Used
 
@@ -48,4 +34,4 @@ Then visit `http://localhost:8000`
 
 **Email:** afsar725412@gmail.com  
 **LinkedIn:** [afsar-uddin-3aa7b2357](https://www.linkedin.com/in/afsar-uddin-3aa7b2357/)  
-**GitHub:** [afsar-uddin136](https://github.com/afsar-uddin136)
+
