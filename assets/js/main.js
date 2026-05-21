@@ -78,7 +78,6 @@ const texts = [
   'Spring Boot Dev',
   'Problem Solver',
   'CSE Student @ DIU'
-  
 ];
 let textIndex = 0;
 let charIndex  = 0;
@@ -188,6 +187,25 @@ contactForm.addEventListener('submit', (e) => {
     formNote.textContent = '';
   }, 3000);
 });
+
+/* ---- Skill Bar Animation ---- */
+const skillBarObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const fills = entry.target.querySelectorAll('.skill-bar-fill');
+      fills.forEach((fill, i) => {
+        const targetWidth = fill.dataset.width;
+        setTimeout(() => {
+          fill.style.width = targetWidth + '%';
+        }, i * 120); // stagger each bar by 120ms
+      });
+      skillBarObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+const skillBarsContainer = document.querySelector('.skills__bars');
+if (skillBarsContainer) skillBarObserver.observe(skillBarsContainer);
 
 /* ---- Active nav link on scroll ---- */
 const sections  = document.querySelectorAll('section[id]');
